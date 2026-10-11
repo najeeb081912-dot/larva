@@ -56,4 +56,4 @@ docker compose up -d
 My goal is to expand Larva into a more capable and user-friendly stock trading simulator. Contributions, suggestions, and feedback are welcome!
 
 ## Note
-Ai like claude and gemini were used in the making of this, If any mistakes or errors are out there please report.:)
+Ai like claude and gemini were used in the making of this, If any mistakes or errors are out there please report.:):)
