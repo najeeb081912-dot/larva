@@ -22,7 +22,6 @@ services:
     restart: unless-stopped
     ports:
       - "56391:8000"
-      - "57391:8000"
     volumes:
       - ./docs:/app/documents
       - ./chroma:/app/chroma
