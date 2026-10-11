@@ -9,9 +9,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            theme: { 
-                extend: { 
-                    colors: { 
+            theme: {
+                extend: {
+                    colors: {
                         c1: "#ecf3f0", // Crisp primary text
                         c2: "#b4cdc2", // Secondary text
                         c3: "#789487", // Muted text / labels
@@ -28,7 +28,7 @@
                     animation: {
                         'fade-in': 'fadeIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards',
                     }
-                } 
+                }
             }
         };
     </script>
@@ -512,7 +512,7 @@
 
     <!-- APPLICATION LOGIC -->
     <script>
-        const API_URL = window.API_URL || `http://${location.hostname}:56391`;
+        const API_URL = window.API_URL || "";
 
         const symbols = [
             "AAPL", "MSFT", "GOOGL", "AMZN", "TSLA", "META",
@@ -644,12 +644,12 @@
         function renderActiveAccountView() {
             const slot = currentAccountSlot;
             const acct = accountsData && accountsData.find(a => a.slot === slot);
-            
+
             const titles = { 1: "Portfolio 1", 2: "Portfolio 2", 3: "Portfolio 3" };
             document.getElementById("account-title").innerText = titles[slot] || `Portfolio ${slot}`;
 
             const summaryText = document.getElementById("account-summary-text");
-            summaryText.innerText = acct 
+            summaryText.innerText = acct
                 ? `Portfolio valuation stands at ${money(acct.total_value)} with ${acct.positions.length} active positions.`
                 : "Awaiting portfolio sync...";
 
@@ -919,7 +919,7 @@
             const signedIn = Boolean(user);
             document.getElementById("user-bar").classList.toggle("hidden", !signedIn);
             document.getElementById("user-name").innerText = signedIn ? user.username : "";
-            
+
             const nav = document.getElementById("header-nav");
             if (nav) {
                 if (signedIn) {
@@ -1024,7 +1024,7 @@
             isDemoMode = true;
             document.getElementById("connection-badge").classList.remove("hidden");
             document.getElementById("connection-badge").classList.add("flex");
-            
+
             lastQuotes = {
                 AAPL: { price: 183.25, percent: 1.42 },
                 MSFT: { price: 415.10, percent: 0.85 },
@@ -1045,14 +1045,14 @@
 
         async function initAuth() {
             if (isDemoMode) return;
-            
+
             try {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 2000);
-                
+
                 const response = await fetch(`${API_URL}/quotes?symbols=AAPL`, { signal: controller.signal });
                 clearTimeout(timeoutId);
-                
+
                 if (!response.ok) throw new Error();
             } catch {
                 console.warn("API server not reachable on load. Activating Demo Mode.");
